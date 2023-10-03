@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, url_for
 app = Flask(__name__)
 
 @app.route("/")
@@ -8,35 +8,43 @@ def start():
 
 @app.route("/menu")
 def menu():
-    return"""
+    return'''
 <!doctype html>
 <html>
     <head>
         <title>НГТУ, ФБ, Лабораторные работы</title>
     </head>
     <body>
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
         <header>
             НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
         </header>
 
-        <h1>Меню</h1>
+        <h1><a href="/menu" target="_blank" >Меню</a></h1>
+
+        <ol>
+            <li>
+                <a href="/lab1" target="_blank">Лабораторная работа 1</a>
+            </li>
+        </ol>
 
         <footer>
             &copy; Якунина Елизавета, ФБИ-14, 3 курс, 2023
         </footer>
     </body>
 </html>
-"""    
+'''  
 
 @app.route("/lab1")
 def lab1():
-    return"""
+    return'''
 <!doctype html>
 <html>
     <head>
         <title>Якунина Елизавета Владимировна, лабораторная 1</title>
     </head>
     <body>
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
         <header>
             НГТУ, ФБ, Лабораторная работа 1
         </header>
@@ -54,5 +62,17 @@ def lab1():
         </footer>
     </body>
 </html>
-"""
+'''
 
+@app.route('/lab1/oak')
+def oak():
+    return'''
+<!doctype html>
+<html>
+    <body>
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+        <h1>Дуб</h1>
+        <img src="''' + url_for('static', filename='oak.jpg') + '''">
+    </body>
+</html>
+'''
