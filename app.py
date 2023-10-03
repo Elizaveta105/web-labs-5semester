@@ -185,5 +185,8 @@ def nsk():
 
 @app.route('/lab2/example')
 def example():
+    group = 'ФБИ-14'
+    course = '3 курс'
+    lr_number = '2'
     name = 'Елизавета Якунина'
-    return render_template('example.html', name=name)
+    return render_template('example.html', name=name, group=group, course=course, lr_number=lr_number)
