@@ -198,5 +198,20 @@ def example():
         {'name': 'манго', 'price': 321}
     ]
 
+    books =[
+        {'book': 'Властелин колец', 'author': 'Джон Р. Р. Толкин', 'genre': 'Фэнтези', 'pages': 1120},
+        {'book': 'Унесенные ветром', 'author': 'Маргарет Митчелл', 'genre': 'Классика', 'pages': 992},
+        {'book': '11/22/63', 'author': 'Стивен Кинг', 'genre': 'Фантастика', 'pages': 800},
+        {'book': 'Лекарь. Ученик Авиценны', 'author': 'Ной Гордон', 'genre': 'Приключения', 'pages': 816},
+        {'book': 'К востоку от Эдема', 'author': 'Джон Стейнбек', 'genre': 'Классика', 'pages': 768},
+        {'book': 'Мидлмарч', 'author': 'Джордж Элиот', 'genre': 'Классика', 'pages': 832},
+        {'book': 'Волхв', 'author': 'Джон Фаулз', 'genre': 'Приключения', 'pages': 816},
+        {'book': 'Столпы Земли', 'author': 'Кен Фоллетт', 'genre': 'Приключения', 'pages': 880},
+        {'book': 'Ярмарка тщеславия', 'author': 'Уильям Теккерей', 'genre': 'Роман', 'pages': 752},
+        {'book': 'Отверженные', 'author': 'Виктор Гюго', 'genre': 'Проза', 'pages': 1284},
+        {'book': 'Американская трагедия', 'author': 'Теодор Драйзер', 'genre': 'Классика', 'pages': 800}
+    ]
+
     return render_template('example.html', name=name, group=group, 
-                           course=course, lr_number=lr_number, fruits=fruits)
+                           course=course, lr_number=lr_number, 
+                           fruits=fruits, books=books)
