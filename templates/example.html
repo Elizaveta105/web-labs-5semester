@@ -1,14 +1,20 @@
+<!-- Создала шаблон - html-файл, в котором могут быть дополнительные команды для 
+flask (вернее, для шаблонизатора Jinja, входящего в состав flask) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if name %}Елизавета Якунина{% endif %}. Лабораторная работа 2</title>
+    <!-- в Jinja управляющие конструкции (в том числе условия) указываются
+    внутри комбинации символов { % % } -->
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
     <header>
         WEB-программирование, часть 2. {% if lr_number %}Лабораторная работа 2{% endif %}
+        <!-- конструкция {% if lab_num %} означает «если задана переменная
+        lab_num». Окончание конструкции {% endif %} означает конец блока. -->
     </header>
 
     <main>
@@ -40,19 +46,16 @@
         {% else %}
             Анонимус,
         {% endif %}
-
         {% if group %}
             {{ group }},
         {% else %}
             Группа неизвестна,
         {% endif %}
-
         {% if course %}
             {{ course }},
         {% else %}
             Курс не определён,
         {% endif %}
-        
         2023
     </footer>
 </body>
