@@ -5,11 +5,13 @@ from flask import Blueprint, redirect, url_for
 # Нам нужно создать не приложение Flask, а эскиз, поэтому поменяем Flask на Blueprint
 lab1 = Blueprint('lab1',__name__)
 
+
 @lab1.route("/")
 @lab1.route("/index")
 def start():
     return redirect("/menu", code=302) 
 # Здесь мы говорим, что при запросе «/» или «/index» надо сделать перенаправление (redirect) на страницу «/menu»
+
 
 @lab1.route("/menu")
 def menu():
@@ -34,7 +36,10 @@ def menu():
             </li>
             <li>
                 <a href="/lab2/" target="_blank">Лабораторная работа 2</a>
-            </li>            
+            </li>
+            <li>
+                <a href="/lab3/" target="_blank">Лабораторная работа 3</a>
+            </li>                           
         </ol>
         </h3>
 
@@ -45,6 +50,7 @@ def menu():
     </body>
 </html>
 '''  
+
 
 @lab1.route("/lab1")
 def lab():
@@ -98,6 +104,7 @@ def lab():
 </html>
 '''
 
+
 @lab1.route('/lab1/oak')
 def oak():
     return'''
@@ -110,6 +117,7 @@ def oak():
     </body>
 </html>
 '''
+
 
 # Создала роут, который выдаёт фамилию, имя и отчество студента и картинку-лого НГТУ
 @lab1.route('/lab1/student')
@@ -124,6 +132,7 @@ def student():
     </body>
 </html>
 '''
+
 
 @lab1.route('/lab1/python')
 def python():
@@ -157,6 +166,7 @@ def python():
     </body>
 </html>
 '''
+
 
 @lab1.route('/lab1/nsk')
 def nsk():

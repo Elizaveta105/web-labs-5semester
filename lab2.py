@@ -5,6 +5,7 @@ from flask import Blueprint, render_template
 # Нам нужно создать не приложение Flask, а эскиз, поэтому поменяем Flask на Blueprint
 lab2 = Blueprint('lab2',__name__)
 
+
 @lab2.route('/lab2/example')
 def example():
     name = 'Елизавета Якунина'
@@ -38,9 +39,11 @@ def example():
                            course=course, lr_number=lr_number, 
                            fruits=fruits, books=books)
 
+
 @lab2.route('/lab2/')
 def lab():
     return render_template('lab2.html')
+
 
 @lab2.route('/lab2/kartinki')
 def kartinki():
