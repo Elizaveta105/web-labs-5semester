@@ -220,6 +220,10 @@ def example():
 def lab2():
     return render_template('lab2.html')
 
+@app.route('/lab2/kartinki')
+def kartinki():
+    return render_template('kartinki.html')
+
 
 
 
