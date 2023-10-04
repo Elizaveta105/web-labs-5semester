@@ -2,6 +2,7 @@ from flask import Blueprint, redirect, url_for
 # Указали, что из пакета flask нам нужен класс Flask
 # url_for() возвращает нужный нам путь в виде строки
 # render_template() из пакета flask отвечает за рендеринг шаблонов (создание html-текста для браузера)
+# Нам нужно создать не приложение Flask, а эскиз, поэтому поменяем Flask на Blueprint
 lab1 = Blueprint('lab1',__name__)
 
 @lab1.route("/")
