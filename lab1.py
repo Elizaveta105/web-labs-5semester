@@ -22,7 +22,7 @@ def menu():
         <title>НГТУ, ФБ, Лабораторные работы</title>
     </head>
     <body>
-    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='labs.css')+'''">
         <header>
             НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
         </header>
@@ -61,7 +61,7 @@ def lab():
         <title>Якунина Елизавета Владимировна, лабораторная 1</title>
     </head>
     <body>
-    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='labs.css')+'''">
         <header>
             НГТУ, ФБ, Лабораторная работа 1
         </header>
@@ -111,7 +111,7 @@ def oak():
 <!doctype html>
 <html>
     <body>
-    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='labs.css')+'''">
         <h1>Дуб</h1>
         <img src="''' + url_for('static', filename='oak.jpg') + '''">
     </body>
@@ -126,7 +126,7 @@ def student():
 <!doctype html>
 <html>
     <body id="student">
-    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='labs.css')+'''">
         <h1>Студент: Якунина Елизавета Владимировна</h1>
         <img src="''' + url_for('static', filename='logo.jpg') + '''">
     </body>
@@ -140,7 +140,7 @@ def python():
 <!doctype html>
 <html>
     <body id="python">
-    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='labs.css')+'''">
         <h1>Python</h1>
 
         <div>
@@ -174,7 +174,7 @@ def nsk():
 <!doctype html>
 <html>
     <body id="nsk">
-    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='labs.css')+'''">
         <h1>Новосибирск</h1>
 
         <div>

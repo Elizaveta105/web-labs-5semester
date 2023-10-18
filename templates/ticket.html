@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{% block main %}
+
+    {% if  surname %}
+
+    <h1>Ваш билет оформлен!</h1>
+    <h3>Проверьте ваши данные:</h3>
+    <div>Ваша фамилия: {{ surname }}</div><br>
+    <div>Ваше имя: {{ name }}</div><br>
+    <div>Ваше отчество: {{ middlename }}</div><br>
+    <div>Ваш возраст: {{ age }}</div><br>
+    <div>Пункт выезда: {{ start }}</div><br>
+    <div>Пункт назначения: {{ finish }}</div><br>
+    <div>Тип билета: {{ 'Детский' if tickettype == 'children' else 'Взрослый' }}</div><br>
+    <div>Багаж: {{ 'Нет' if luggage == 'no' else 'Есть' }}</div><br>
+    <div>Дата поездки: {{ data }}</div><br>
+    <div>Ваша полка: 
+        {% if polka == 'niz' %}
+            Нижняя
+        {% elif polka == 'nizbok' %}
+            Нижняя боковая
+        {% elif polka == 'verh' %}
+            Верхняя
+        {% else %}
+            Верхняя боковая
+        {% endif %}
+    </div>
+    <h1>Желаем вам удачной поездки!</h1>
+
+    {% else %}
+
+    <h1>Покупка железнодорожного билета</h1>
+    
+    <form>
+        <label>Ваша фамилия:</label>
+        <div>
+            <input type="text" placeholder="Введите фамилию" name="surname" value="{{ surname or '' }}">
+            <span class="error" style="color: rgb(129, 15, 15); font-weight: bold;">{{ errors.surname }}</span>
+        </div>
+        <label>
+
+        <label>Ваше имя:</label>
+         <div>
+            <input type="text" placeholder="Введите имя" name="name" value="{{ name or '' }}">
+            <span class="error" style="color: rgb(129, 15, 15); font-weight: bold;">{{ errors.name }}</span>
+        </div>
+        <label>
+
+        <label>Ваше отчество:</label>
+        <div>
+            <input type="text" placeholder="Введите отчество" name="middlename" value="{{ middlename or '' }}">
+            <span class="error" style="color: rgb(129, 15, 15); font-weight: bold;">{{ errors.middlename }}</span>
+        </div>
+        <label>
+        
+        <p>
+        <div>Выберите тип билета:</div>
+        <div>
+            <select name="tickettype">
+                <option value="children" {{ tickettype == 'children' and 'selected' }}>Детский</option>
+                <option value="vzrosliy" {{ tickettype == 'vzrosliy' and 'selected' }}>Взрослый</option>
+            </select>
+        </div>
+        </p>
+        <div>Выберите полку:</div>
+        <div>
+            <select name="polka">
+                <option value="niz" {{ polka == 'niz' and 'selected' }}>Нижняя</option>
+                <option value="verh" {{ polka == 'verh' and 'selected' }}>Верхняя</option>
+                <option value="verhbok" {{ polka == 'verhbok' and 'selected' }}>Верхняя боковая</option>
+                <option value="nizbok" {{ polka == 'nizbok' and 'selected' }}>Нижняя боковая</option>
+            </select>
+        </div><br>
+        
+        <div>
+        <label>У вас есть багаж?</label><br>
+        </div>
+        <div>
+            <select name="luggage">
+                <option value="yes" {{ luggage == 'yes' and 'selected' }}>Да</option>
+                <option value="no" {{ luggage == 'no' and 'selected' }}>Нет</option>
+            </select>
+        </div><br>
+
+        <label>Ваш возраст:</label><br>
+        <div>
+            <input type="number"  name="age" value="{{ age or '' }}" required min="18" max="120">
+            <span class="error" style="color: rgb(129, 15, 15); font-weight: bold;">{{ errors.age }}</span>
+        </div><br>
+
+        <label>Пункт выезда:</label><br>
+        <div>
+            <input type="text" name="start" value="{{ start or '' }}">
+            <span class="error" style="color: rgb(129, 15, 15); font-weight: bold;">{{ errors.start }}</span>
+        </div><br>
+        </label>
+
+        <label>Пункт назначения:</label><br>
+        <div>
+            <input type="text" name="finish" value="{{ finish or '' }}">
+            <span class="error" style="color: rgb(129, 15, 15); font-weight: bold;">{{ errors.finish }}</span>
+        </div><br>
+        <label>
+
+        <label>Дата поездки:</label><br>
+        <div>
+            <input type="date" name="data" value="{{ data or '' }}">
+            <span class="error" style="color: rgb(129, 15, 15); font-weight: bold;">{{ errors.data}}</span>
+        </div><br>
+        <label>
+
+        <div>
+            <button type="submit">Оформить билет</button>
+        </div>
+    </form>
+    {% endif %}
+{% endblock %}
