@@ -23,19 +23,22 @@
     <form>
         <label>Ваше имя:</label> <!--Параметр для имени-->
         <div>
-            <input type="text" placeholder="как вас зовут?" name="user">
+            <input type="text" placeholder="как вас зовут?" name="user" value="{{ user or '' }}"> <!--Вывод пустой строки вместо None-->
+            <span class="error" style="color: rgb(129, 15, 15);">{{ errors.user }}</span> <!--Стилизация сообщения об ошибке-->
         </div>
 
         <label>Ваш возраст:</label> <!--Параметр для возраста-->
         <div>
-            <input type="number" name="age">
+            <input type="number" name="age" value="{{ age or '' }}">
+            <span class='errors' style="color: rgb(129, 15, 15);">{{ errors.age }}</span>
         </div>
 
         <label>Ваш пол:</label> <!--Параметр для пола-->
         <div>
             <select name="sex">
-                <option value="male">мужчина</option>
-                <option value="female">женщина</option>
+                <!--Выбор активного пункта для пола пользователя-->
+                <option value="male" {{ sex == 'male' and 'selected' }}>мужчина</option>
+                <option value="female" {{ sex == 'female' and 'selected' }}>женщина</option>
             </select>
         </div>
 
