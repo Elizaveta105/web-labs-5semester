@@ -30,3 +30,8 @@ footer{
     font-weight: bold;
     bottom: 0;
 }
+
+#drinks{
+    background-color: rgb(238, 182, 240);
+    color: rgb(55, 26, 118);
+}
