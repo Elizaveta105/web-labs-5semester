@@ -35,3 +35,8 @@ footer{
     background-color: rgb(238, 182, 240);
     color: rgb(55, 26, 118);
 }
+
+#snow {
+    color: blue;
+    font-weight: bold;
+}
