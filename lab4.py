@@ -109,12 +109,30 @@ def zerno():
 
 @lab4.route('/lab4/cookies', methods = ['GET', 'POST'])
 def cookies():
+    errors = []
     if request.method == 'GET':
-        return render_template('cookies.html')
+        return render_template('cookies.html', errors=errors)
     
     color = request.form.get('color')
+    backgroundcolor = request.form.get('backgroundcolor')
+
+    if color == backgroundcolor:
+        errors.append("Цвет текста не должен совпадать с текстом фона")
+
+    fontsize = request.form.get('fontsize')
+    if not fontsize:
+        errors.append("Не задан размер текста")
+    else:
+        fontsize=int(fontsize)
+        if fontsize < 5 or fontsize > 30:
+            errors.append("Размер текста должен быть от 5px до 30px")
+    if errors:
+        return render_template('cookies.html', errors=errors)  
+      
     headers = {
-        'Set-Cookie': 'color=' + color + '; path=/',
+        'Set-Cookie': ['color=' + color + '; path=/', 'backgroundcolor=' + backgroundcolor + '; path=/', 
+                       'fontsize=' + str(fontsize) + '; path=/'],        
         'Location': '/lab4/cookies'
     }
+
     return '', 303, headers

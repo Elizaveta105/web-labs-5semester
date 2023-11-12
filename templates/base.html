@@ -8,7 +8,9 @@
     {% if request.cookies.get('color') %}
     <style>
         body {
-            color: {{ request/cookies/get('color') }};
+            color: {{ request.cookies.get('color') }};
+            background-color: {{ request.cookies.get('backgroundcolor') }};
+            font-size: {{ request.cookies.get('fontsize') }}px;
         }
     </style>
     {% endif %}
