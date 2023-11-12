@@ -46,14 +46,17 @@ def fridge():
         return render_template('fridge.html', errors=errors)
 
     temp = request.form.get('temp')
-    if temp == "":
+    if temp == '':
         errors['temp'] = 'Ошибка: не задана температура'
+        snow = ''
     else:
         temp = int(temp)
         if temp < -12:
             errors['temp'] = 'Не удалось установить температуру — слишком низкое значение'
+            snow = ''
         elif temp > -1:
             errors['temp'] = 'Не удалось установить температуру — слишком высокое значение'
+            snow = ''
         else:
             if -12 <= temp <= -9:
                 errors['temp'] = f'Установлена температура: {temp}\u2103'
@@ -65,3 +68,39 @@ def fridge():
                 errors['temp'] = f'Установлена температура: {temp}\u2103'
                 snow = ' \u2744'
     return render_template('temperatura.html', errors=errors, temp=temp, snow=snow)
+
+@lab4.route('/lab4/zerno', methods = ['GET', 'POST'])
+def zerno():
+    errors = {}
+
+    if request.method == 'GET':
+        return render_template('zerno.html', errors=errors)
+
+    weight = request.form.get('weight')
+    if weight == '':
+        errors['weight'] = 'Не введен вес'
+    else:
+        weight = int(weight)
+        if weight <= 0:
+            errors['weight'] = 'Неверное значение веса'
+        elif weight > 500:
+            errors['weight'] = "Такого объёма сейчас нет в наличии"
+            
+    price = 0
+    price = float(price)
+    zerno = request.form.get('zerno')
+    if zerno == 'barley':
+        price = 12000 * weight
+    elif zerno == 'oats':
+        price = 8500 * weight
+    elif zerno == 'wheat':
+        price = 8700 * weight
+    else:
+        price = 14000 * weight
+    if weight > 50:
+        price = price - (price * 0.1)
+        skidka = f"Применена скидка 10% за большой объём ({price * 0.1}) руб."
+    else:
+        skidka = ""
+
+    return render_template('zerno.html', weight=weight, zerno=zerno, price=price, errors=errors, skidka=skidka)
