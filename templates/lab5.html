@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 5{% endblock %}
+
+{% block main %}
+    <h1><div style="text-align: center;">База знаний</div></h1>
+    <nav style="text-align: center;">    
+        <a href="/lab5/article_list" style="padding: 5px 20px;">Посмотреть заметки</a>
+        <a href="/lab5/new_article" style="padding: 5px 20px;">Создать заметку</a>
+        <a href="/lab5/users" style="padding: 5px 20px;">Пользователи</a>
+        <a href="/lab5/login" style="background-color: rgb(89, 64, 45); color: white; padding: 5px 20px; border-radius: 5px;">Логин</a>
+        <a href="/lab5/register" style="background-color: rgb(59, 31, 10); color: white; padding: 5px 20px; border-radius: 5px;">Регистрация</a>
+        <a href="logout" style="background-color: rgb(89, 64, 45); color: white; padding: 5px 20px; border-radius: 5px;">Выход</a>
+        <span style="padding: 5px 20px;">{{username}}</span> 
+    </nav>
+{% endblock %}
