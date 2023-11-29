@@ -59,6 +59,7 @@ def user():
         password = "123",
         port = 5432
     )
+    # Получаем курсор. С помощью него мы можем выполнять SQL-запросы
     cur = conn.cursor()
     cur.execute("SELECT * FROM users;")
     result = cur.fetchall()
@@ -69,12 +70,18 @@ def user():
 def registerPage():
     errors = []
 
+    # Если это метод GET, то верни шаблон и заверши выполнение
     if request.method == 'GET':
         return render_template('register.html', errors=errors)
 
+    # Если мы попали сюда, значит это метод POST,
+    # так как GET мы уже обработали и сделали return.
+    # После return функция немедленно завершается
     username = request.form.get('username')
     password = request.form.get('password')
 
+    # Провряем username и password на пустоту
+    # Если пюбой из них пустой, то добавляем ошибку и рендерим шаблон
     if not (username and password):
         errors.append("Пожалуйста, заполните все поля")
         print(errors)
@@ -82,8 +89,12 @@ def registerPage():
 
     hashPassword = generate_password_hash(password)
 
+    # Если мы попали сюда, значит username и password заполненны
+    # Подключаемся к БД
     conn = dBConnect()
     cur = conn.cursor()
+    # Проверяем наличие клиента в базе 
+    # У нас не может быть два пользователя с одинаковыми логинами
     cur.execute(f"SELECT username FROM users WHERE username = '{username}';")
 
     if cur.fetchone() is not None:
@@ -93,6 +104,8 @@ def registerPage():
         cur.close()
         return render_template('register.html', errors=errors)
     
+    # Если мы попали сюда, значит в curfetchone нет ни одной строки
+    # значит пользователя с таким же логином не существует
     cur.execute(f"INSERT INTO users (username, password) VALUES ('{username}','{hashPassword}');")
     conn.commit()
     conn.close()
@@ -165,6 +178,7 @@ def createArticle():
 
 
 @lab5.route("/lab5/articles/<string:article_id>")
+# указывает на то, что в этой части маршрута ожидается строковое значение, которое будет приниматься в качестве параметра
 def getArticle(article_id):
     userID = session.get("id")
 
@@ -191,8 +205,9 @@ def getArticle(article_id):
 def getArticleList():
     userID = session.get("id")
     username = session.get("username")
-    articles_list = "Нет статей"
-    if userID is not None:
+    if userID is None:
+        articles_list = []
+    else:
         conn = dBConnect()
         cur = conn.cursor()
         

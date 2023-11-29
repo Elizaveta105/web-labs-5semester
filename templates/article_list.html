@@ -5,14 +5,18 @@
 {% block main %}
 <h1>Список статей пользователя {{ username }}</h1>
 <div>
-    <a href="logout" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Выход</a>
+    <a href="logout" style="border: 2px solid rgb(89, 64, 45); padding: 5px 10px; border-radius: 5px;">Выход</a>
+    {% if articles_list %}
     <ul>
         {% for article in articles_list %}
         <li>
             <h2 style="margin-top: 24px; margin-bottom: 0px;">Заголовок: {{  article[1] }}</h2>
             <br>ID: {{ article[0] }}
-        </li>
+            </li>
         {% endfor %}
-    </ul>
-</div>
+        </ul>
+        {% else %}
+        <p>Нет статей</p>
+    </div>
+    {% endif %}
 {% endblock %}
