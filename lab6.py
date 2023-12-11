@@ -6,4 +6,5 @@ lab6=Blueprint('lab6', __name__)
 
 
 @lab6.route("/lab6/")
-def
+def lab():
+    return render_template('lab6.html')
