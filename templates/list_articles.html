@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 6{% endblock %}
+
+{% block main %}
+    <h1>Мои статьи</h1>
+    <p>
+        <a href="/lab6/" style="border: 2px solid rgb(59, 31, 10); padding: 5px 10px; border-radius: 5px;">Вернуться на главную</a>
+    </p>
+
+    <ul>
+        {% for article in articles %}
+            <li>
+                <h3><a href="/lab6/article/{{ article.id }}">{{ article.tite }}</a></h3>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
