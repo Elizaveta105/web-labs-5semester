@@ -9,7 +9,7 @@
 {% block main %}
     <h1>Заказ напитка</h1>
 
-    <div>Напиток:</div><br>
+    <div>Напиток:</div>
     <label>
         <input type="radio" value="coffee" name="drink" checked>Кофе
     </label><br>
@@ -18,15 +18,15 @@
     </label><br>
     <label>
         <input type="radio" value="green-tea" name="drink">Зелёный чай
-    </label><br><br><br>
+    </label><br><br>
 
-    <div>Добавки:</div><br>
+    <div>Добавки:</div>
     <label>
         <input type="checkbox" name="milk">Молоко
     </label><br>
     <label>
         <input type="checkbox" name="sugar">Сахар
-    </label><br><br>
+    </label><br>
 
     <div>
         <button onclick="getPrice()">Рассчитать цену</button>
@@ -48,11 +48,17 @@
         <div>Номер CVV:</div>
         <label>
             <input type="text" id="cvv" name="cvv" size="3">
-        </label><br><br>
+        </label><br>
 
         <div id="payment-status" style="color: red;"></div><br>
 
         <div>
             <button onclick="pay()">Оплатить</button>
+        </div>
+
+        <div>
+            <button onclick="cancellation()" id="cancellation">Отмена оплаты</button>
+        </div>
+            <div id="pay"></div>
         </div>
 {% endblock %}

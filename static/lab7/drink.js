@@ -64,3 +64,41 @@ function pay() {
         document.querySelector('#payment-status').innerHTML = 'Произошла ошибка при выполнении запроса &#128580;...';
     });
 }
+
+
+function cancellation() {
+    const milk = document.querySelector('[name=milk]').checked;
+    const sugar = document.querySelector('[name=sugar]').checked;
+    const drink = document.querySelector('[name=drink]:checked').value;
+    const card_num = document.querySelector('#card_num').value;
+    const cvv = document.querySelector('#cvv').value;
+
+    const obj = {
+        "method": "refund",
+        "params": {
+            drink: drink,
+            milk: milk,
+            sugar: sugar,
+            card_num: card_num,
+            cvv: cvv
+        }
+    };
+
+    fetch('/lab7/api', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(obj)
+    })
+    .then(function(resp) {
+        return resp.json();
+    })
+    .then(function(data) {
+        if (data.error) {
+            document.querySelector('#price').innerHTML = `Ошибка: ${data.error}`;
+        } else {
+            document.querySelector('#price').innerHTML = data.result;
+            document.querySelector('#cancellation').style.display = 'none';
+            document.querySelector('#pay').style.display = 'block';
+        }
+    });
+}

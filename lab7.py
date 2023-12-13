@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, abort
 
 lab7 = Blueprint('lab7', __name__)
 
@@ -21,8 +21,11 @@ def api():
         return get_price(data['params'])
     
     if data ['method'] == 'pay':
-        return pay(data['params'])  # Вызов функций согласно методу
+        return pay(data['params'])
     
+    if data['method'] == 'refund': 
+        return cancellation(data['params'])
+
     abort(400)  # Возврат ошибки при выыводе нестандартного метода
 
 
@@ -65,3 +68,16 @@ def pay(params):
     
     price = calculate_price(params)
     return {"result": f'С карты {card_num} списано {price} руб.', "error": None}
+
+
+def cancellation(params):
+    card_num = params['card_num']
+    if len(card_num) != 16 or not str(card_num).isdigit():
+        return {"result": None, "error": "Неверный номер карты"}
+
+    cvv = params['cvv']
+    if len(cvv) != 3 or not cvv.isdigit():
+        return {"result": None, "error": "Неверный номер CVV/CVC"}
+
+    return {"result": f'<span style="color: green;">Возврат денег на карту успешно завершен!</span>', "error": None}
+
