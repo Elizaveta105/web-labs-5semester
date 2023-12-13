@@ -1,15 +1,15 @@
-from flask import Flask
+from flask import Flask, Blueprint, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy 
+from flask_login import LoginManager, login_user, login_required, current_user, logout_user
+from Db import db
+from Db.models import users, articles
+from werkzeug.security import check_password_hash, generate_password_hash
 from lab1 import lab1
 from lab2 import lab2
 from lab3 import lab3
 from lab4 import lab4
 from lab5 import lab5
-from lab6 import lab6 
-from Db import db
-from Db.models import users, articles
-from flask_login import LoginManager
-# Указали, что из пакета flask нам нужен класс Flask
+from lab6 import lab6
 
 
 app = Flask(__name__)
@@ -27,6 +27,14 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
+login_manager = LoginManager(app)
+login_manager.login_view = 'lab6.login'
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_users(user_id):
+    return users.query.get(int(user_id))
+   
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
 app.register_blueprint(lab3)
