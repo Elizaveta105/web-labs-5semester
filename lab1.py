@@ -53,7 +53,7 @@ def menu():
                 <a href="/lab7/" target="_blank">Лабораторная работа 7</a>
             </li>       
             <li>
-                <a href="/rgz/" target="_blank">Расчётно-графическое задание</a>
+                <a href="/lab8/" target="_blank">Лабораторная работа 8</a>
             </li>                           
         </ol>
         </h3>
