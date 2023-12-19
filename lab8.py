@@ -21,7 +21,7 @@ def get_courses():
 
 @lab8.route('/lab8/api/courses/<int:course_num>', methods=['GET'])
 def get_course(course_num):
-    if course_num < 0 or course_num >= len(courses):  # Проверяем, принадлежит ли course_num корректному диапазону
+    if course_num < 0 or course_num >= len(courses):
         abort(404)
     return courses[course_num]
 
@@ -41,3 +41,10 @@ def put_course(course_num):
         abort(404) 
     courses[course_num] = course
     return courses[course_num]
+
+
+@lab8.route('/lab8/api/courses/', methods=['POST'])
+def add_course():
+    course = request.get_json()
+    courses.append(course)
+    return {"num": len(courses)-1}
