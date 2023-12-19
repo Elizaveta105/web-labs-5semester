@@ -9,7 +9,7 @@
         display: none;
         z-index: 100;
         box-shadow: 3px 3px 5px black;
-        width: 400px;
+        width: 500px;
         left: 13%;
         margin-left: -200px;
         position: absolute;
@@ -39,23 +39,23 @@
 
 <div>
     <button onclick="addCourse()">Добавить курс</button>
-</div>
+</div><br>
 <div class="modal">
     <input type="hidden" id="num">
     <label>
         Название курса:
         <input type="text" id="name">
-    </label><br>
+    </label><br><br>
 
     <label>
         Количество видеороликов:
         <input type="number" id="videos" min="0">
-    </label><br>
+    </label><br><br>
 
     <label>
         Цена:
         <input type="number" id="price" min="0">
-    </label><br>
+    </label><br><br>
 
     <button onclick="sendCourse()">Ок</button>
     <button onclick="cancel()">Отмена</button>

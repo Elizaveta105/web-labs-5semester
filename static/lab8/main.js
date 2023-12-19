@@ -18,9 +18,6 @@ function fillCourseList() {
             let tdPrice = document.createElement('td');
             tdPrice.innerText = courses[i].price || 'бесплатно';
 
-            let tdCreatedDate = document.createElement('td');
-            tdCreatedDate.innerText = courses[i].created_date;
-
             let editButton = document.createElement('button');
             editButton.innerText = 'редактировать';
             editButton.onclick = function() {
@@ -40,7 +37,6 @@ function fillCourseList() {
             tr.append(tdName);
             tr.append(tdVideos);
             tr.append(tdPrice);
-            tr.append(tdCreatedDate);
             tr.append(tdActions);
 
             tbody.append(tr);
@@ -100,8 +96,17 @@ function sendCourse() {
         body: JSON.stringify(course),
     })
     .then(function() {
-        fillCourseList(); // перезагрузка таблицы
-        hideModal(); // закрытие модального окна
+        fillCourseList();
+        hideModal();
     });
 
+}
+
+
+function editCourse(num, course) {
+    document.getElementById('num').value = num;
+    document.getElementById('name').value = course.name;
+    document.getElementById('videos').value = course.videos;
+    document.getElementById('price').value = course.price;
+    showModal();
 }
